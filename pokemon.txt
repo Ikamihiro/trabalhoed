@@ -101,7 +101,7 @@ Goldeen 45 67 60
 Seaking 80 92 65
 Staryu 30 45 55
 Starmie 60 75 85
-Mr. Mime 40 45 65
+Mr.Mime 40 45 65
 Scyther 70 110 80
 Jynx 65 50 35
 Electabuzz 65 83 57
@@ -371,7 +371,7 @@ Stunky 63 63 47
 Skuntank 103 93 67
 Bronzong 67 89 116
 Bonsly 50 80 95
-Mime Jr. 20 25 45
+MimeJr. 20 25 45
 Chatot 76 65 45
 Spiritomb 50 92 108
 Gabite 68 90 65
