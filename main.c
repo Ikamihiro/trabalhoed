@@ -1,3 +1,11 @@
+/* 
+Trabalho de Estrutura de Dados
+Professor: Daniel
+Aluno: João G. Silva
+RGA: 201811316011
+Implementação prática dos conceitos ensinados nas aulas
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
