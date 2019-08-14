@@ -15,6 +15,47 @@ typedef struct No {
     struct No *left, *right;
 } TNo;
 
+void mergeIntercala(TItem *vetor, int inicio, int meio, int tamanho) {
+    int i, j, k, a_size  = meio - inicio + 1, b_size = tamanho - meio;
+    TItem *vetA = (TItem *) malloc(sizeof(TItem) * a_size);
+    TItem *vetB = (TItem *) malloc(sizeof(TItem) * b_size);
+    //dividindo o vetor nos dois vetores alocados
+    for(i = 0; i < a_size; i++) {
+        vetA[i] = vetor[i + inicio];
+    }
+    for(i = 0; i < b_size; i++) {
+        vetB[i] = vetor[i + meio + 1];  
+    }
+    // colocando ordenadamente no vetor original
+    for(i = 0, j = 0, k = inicio; k <= tamanho; k++) {
+        if(i == a_size) {
+            vetor[k] = vetB[j++];
+        }
+        else if(j == b_size) {
+            vetor[k] = vetA[i++];
+        }
+        else if(vetA[i].id < vetB[j].id) {
+            vetor[k] = vetA[i++];
+        }
+        else {
+            vetor[k] = vetB[j++];
+        }
+    }
+    //liberando o espaço alocado
+    free(vetA);
+    free(vetB);
+}
+
+void mergeSort(TItem *vetor, int inicio, int tamanho) {
+    int meio;
+    if(inicio < tamanho) {
+        meio = floor((inicio + tamanho) / 2);
+        mergeSort(vetor, inicio, meio);
+        mergeSort(vetor, meio + 1, tamanho);
+        mergeIntercala(vetor, inicio, meio, tamanho);
+    }
+}
+
 /* Método para a criação de um nó através de alocação dinâmica */
 TNo *createnode (TItem item) {
     TNo *a = (TNo *) malloc(sizeof(TNo));
@@ -118,47 +159,6 @@ TItem buscaBinaria(TItem *vetor, int id, int tamanho) {
         }
         else size = meio;
     }
-}
-
-void mergeSort(TItem *vetor, int inicio, int tamanho) {
-    int meio;
-    if(inicio < tamanho) {
-        meio = floor((inicio + tamanho) / 2);
-        mergeSort(vetor, inicio, meio);
-        mergeSort(vetor, meio + 1, tamanho);
-        mergeIntercala(vetor, inicio, meio, tamanho);
-    }
-}
-
-void mergeIntercala(TItem *vetor, int inicio, int meio, int tamanho) {
-    int i, j, k, a_size  = meio - inicio + 1, b_size = tamanho - meio;
-    TItem *vetA = (TItem *) malloc(sizeof(TItem) * a_size);
-    TItem *vetB = (TItem *) malloc(sizeof(TItem) * b_size);
-    //dividindo o vetor nos dois vetores alocados
-    for(i = 0; i < a_size; i++) {
-        vetA[i] = vetor[i + inicio];
-    }
-    for(i = 0; i < b_size; i++) {
-        vetB[i] = vetor[i + meio + 1];  
-    }
-    // colocando ordenadamente no vetor original
-    for(i = 0, j = 0, k = inicio; k <= tamanho; k++) {
-        if(i == a_size) {
-            vetor[k] = vetB[j++];
-        }
-        else if(j == b_size) {
-            vetor[k] = vetA[i++];
-        }
-        else if(vetA[i].id < vetB[j].id) {
-            vetor[k] = vetA[i++];
-        }
-        else {
-            vetor[k] = vetB[j++];
-        }
-    }
-    //liberando o espaço alocado
-    free(vetA);
-    free(vetB);
 }
 
 void menu() {
